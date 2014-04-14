@@ -49,9 +49,23 @@ public class MainCalculator {
 	//Main function instantiates the default constructor
 	public static void main(String[] args) {
 		
-		//Values are added to constructor in format: <BASE PRICE>, <NUM OF PEOPLE>, <TYPE OF MATERIAL>
-		MarkupController markupControllerObject = new MarkupController(BASE_PRICE,NUM_OF_PEOPLE, TYPE_OF_MATERIAL);
+		//Default Constructor
+		MarkupController markupControllerObject = new MarkupController();
 		
+		//sets base price from MarkupController's setter method
+		markupControllerObject.setBasePrice(BASE_PRICE);
+		
+		//sets number of people from MarkupController's setter method
+		markupControllerObject.setNumOfPeople(NUM_OF_PEOPLE);	
+		
+		/*
+		 * sets the types of materials from MarkupControllers setter method & is a array as multiple types
+		 * of materials can be involved
+		 */
+		for(int i=0;i< TYPE_OF_MATERIAL.length;i++)
+		{
+			markupControllerObject.setTypeOfMaterial(TYPE_OF_MATERIAL);
+		}
 		//gets base price from MarkupController's getter method
 		BASE_PRICE = markupControllerObject.getBasePrice();
 		
@@ -62,7 +76,6 @@ public class MainCalculator {
 		 * Gets the types of materials from MarkupControllers getter method & is a array as multiple types
 		 * of materials can be involved
 		 */
-		
 		for(int i=0;i< markupControllerObject.getTypeOfMaterial().length;i++)
 		{
 			TYPE_OF_MATERIAL = markupControllerObject.getTypeOfMaterial();
@@ -85,7 +98,10 @@ public class MainCalculator {
 		{
 			//System must exit if any of the conditions are true in if condition
 			exit(SYSTEM_ERROR_CODE_INVALID_INPUT);
-			
+		}
+		else
+		{
+			/* Calculation code*/
 		}
 	}
 	

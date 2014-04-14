@@ -19,6 +19,10 @@ public class MarkupController
 	 * @param NUM_OF_PEOPLE number of people in the system
 	 * @param TYPE_OF_MATERIAL type of materials in the system, an array since user can enter multiple materials
 	 */
+	public MarkupController()
+	{
+		
+	}
 	
 	public MarkupController(String BASE_PRICE, String NUM_OF_PEOPLE,String[] TYPE_OF_MATERIAL)
 	{
