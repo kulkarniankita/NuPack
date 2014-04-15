@@ -13,13 +13,13 @@ import code.MarkupController;
 public class MainCalculator {
 
 	//BASE PRICE 
-	private static String BASE_PRICE="1299.99";
+	private static String BASE_PRICE="$1299.99";
 	
 	//Number of People
-	private static String NUM_OF_PEOPLE= "8 people";
+	private static String NUM_OF_PEOPLE= "3 people";
 	
 	//Types of materials
-	private static String TYPE_OF_MATERIAL[] = new String[]{"FOOD","electronics"};
+	private static String TYPE_OF_MATERIAL[] = new String[]{"FOOD","food"};
 		
 	//Error messages are stored in this
 	private static String message;
@@ -101,7 +101,7 @@ public class MainCalculator {
 		}
 		else
 		{
-			/* Calculation code*/
+			MarkupModel.calculateMarkupSystemFormula(BASE_PRICE, NUM_OF_PEOPLE, TYPE_OF_MATERIAL);
 		}
 	}
 	

@@ -18,6 +18,8 @@ public class MarkupModelTest {
 	/*
 	 * The below variable names store sample inputs to various test cases
 	 */
+	private String examplebasePrice;
+	private String exampleNumOfPeople;
 	private String[] exampleTypeOfMaterial;
 	
 	/*
@@ -59,5 +61,31 @@ public class MarkupModelTest {
 			assertEquals(new BigDecimal(expectedResult[i]),actualResult);
 			i++;
 		}
+	}
+	
+	/*
+	 * This method checks if the calculations are accurate along with input
+	 * If Base price contains $ then it trims it, 
+	 * for num of people, it accepts people key
+	 * for type of material, it checks for duplicates for example: drugs, drugs
+	 * and also checks the case
+	 * Then it prints the output & rounds it upto 2 decimal
+	 */
+	
+	@Test
+	public void testCalcMarkupSystemFormula() 
+	{
+		// Test input
+		examplebasePrice = "$5432.00";
+		exampleNumOfPeople = "1";
+		exampleTypeOfMaterial = new String[]{"drugs","DRUGS"};
+		
+		String expectedBasePrice = "$6199.81";
+		
+		// Testing method
+		String actualResult = MarkupModel.calculateMarkupSystemFormula(examplebasePrice, exampleNumOfPeople, exampleTypeOfMaterial);
+		
+		// Asserts that 2 objects are equal
+		assertEquals(expectedBasePrice,actualResult);
 	}
 }

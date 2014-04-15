@@ -1,8 +1,11 @@
 package code;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 import java.math.BigDecimal;
-
+import code.MarkupView;
 public class MarkupModel {
 
 	/**
@@ -29,6 +32,7 @@ public class MarkupModel {
 		{
 			// puts <key,value> in HashMap i.e. <type of material,markup Percent>
 			put("pharmaceuticals", "0.075");
+			put("drugs", "0.075");
 			put("food", "0.13");
 			put("electronics", "0.02");
 		}		
@@ -68,4 +72,82 @@ public class MarkupModel {
 		//If key doesn't match, 0 is returned as there is 'No- Markup'
 		return new BigDecimal("0");
 	}	
+	
+	/*
+	 * Calculates the main functionality of the system
+	 * 
+	 */
+	public static String calculateMarkupSystemFormula(String BASE_PRICE, String NUM_OF_PEOPLE, String[] TYPE_OF_MATERIAL)
+	{
+		/*
+		 * Removes $ sign & whitespace from Base Price if present
+		 * and returns only the double value
+		 */
+		BASE_PRICE = MainCalculator.validateDollarCheck(BASE_PRICE);
+		
+		/*
+		 * Removes keyword 'people' & whitespace from Number of 
+		 * people if present & returns only number
+		 */
+		NUM_OF_PEOPLE = MainCalculator.validateNumOfPeopleKeyword(NUM_OF_PEOPLE);
+		/*
+		 * Converts base price, number of people into BigDecimal for
+		 * calculations
+		 */
+		BigDecimal basePrice = new BigDecimal(BASE_PRICE);
+		BigDecimal numOfPeople = new BigDecimal(NUM_OF_PEOPLE);        
+		
+		/*
+		 * The elements from Type of materials are added in a Set as
+		 * it helps remove duplicates
+		 * for eg: In condition like 'food' and 'food', only 1 type
+		 * 'food' markup will be calculated
+		 */
+		Set<String> typeOfMaterialSet = null;
+		for(String element:TYPE_OF_MATERIAL)
+		{
+			typeOfMaterialSet = new HashSet<String>(Arrays.asList(element));
+		}
+		//When Type of Material does not match hashmap keys then '0' is added
+		BigDecimal totalTypeOfMaterialMarkup = new BigDecimal("0");
+				
+		/*
+		 * Only those elements from Type of material that match
+		 * the hashmap keys are added for calculations
+		 */
+		for(String typeOfMaterial:typeOfMaterialSet)
+		{
+			BigDecimal typeOfMaterialMarkup = getMarkupTypeOfMaterialsValues(typeOfMaterial);
+			totalTypeOfMaterialMarkup = totalTypeOfMaterialMarkup.add(typeOfMaterialMarkup);
+		}
+		
+		/*
+		 * Formula for calculating flat markups on all jobs
+		 * newBasePrice = basePrice * FlatMarkup (0.05)+ basePrice
+		 */
+		BigDecimal newBasePrice = basePrice.multiply(getFlatMarkup()).add(basePrice);
+		
+		/*
+		 * Formula for calculating the markup for the number of people
+		 * Markup for working people = num of people * markup per working person (0.012)
+		 */
+		BigDecimal totalMarkupForWorkingPeople = numOfPeople.multiply(getMarkupPerWorkingPerson());
+		
+		/*
+		 * Formula for Final Base Price is:
+		 * finalbaseprice = newBasePrice * (1+totalMarkupForWorkingPeople+totalTypeOfMaterialMarkup)
+		 * 
+		 */
+		BigDecimal finalBasePrice = newBasePrice.multiply
+									(BigDecimal.ONE.
+									add(totalMarkupForWorkingPeople).
+									add(totalTypeOfMaterialMarkup));
+		
+		/*
+		 * returns the final base price by rounding upto 2 digits after decimal along with '$' sign
+		 */
+		String outputBasePrice = MarkupView.printOutputFormat(finalBasePrice);
+		System.out.print(outputBasePrice);
+		return outputBasePrice;
+	}
 }
