@@ -138,8 +138,7 @@ public class MarkupModel {
 		 * finalbaseprice = newBasePrice * (1+totalMarkupForWorkingPeople+totalTypeOfMaterialMarkup)
 		 * 
 		 */
-		BigDecimal finalBasePrice = newBasePrice.multiply
-									(BigDecimal.ONE.
+		BigDecimal finalBasePrice = newBasePrice.multiply(BigDecimal.ONE.
 									add(totalMarkupForWorkingPeople).
 									add(totalTypeOfMaterialMarkup));
 		
