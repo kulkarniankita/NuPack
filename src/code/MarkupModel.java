@@ -145,8 +145,9 @@ public class MarkupModel {
 		/*
 		 * returns the final base price by rounding upto 2 digits after decimal along with '$' sign
 		 */
+		MarkupView.printInput(basePrice, numOfPeople, typeOfMaterialSet);
 		String outputBasePrice = MarkupView.printOutputFormat(finalBasePrice);
-		System.out.print(outputBasePrice);
+		System.out.println("Final Output: "+outputBasePrice);
 		return outputBasePrice;
 	}
 }

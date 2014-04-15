@@ -196,8 +196,12 @@ public class MainCalculator {
 	public static String validateNumOfPeopleKeyword(String NUM_OF_PEOPLE)
 	{
 		//Regular expression where s* removes whitespace & \b checks for people
-		String regex = "\\s*\\bpeople\\b\\s*";
-		NUM_OF_PEOPLE = NUM_OF_PEOPLE.replaceAll(regex, "");
+		String regexPeople = "\\s*\\bpeople\\b\\s*";
+		
+		//Regular expression where s* removes whitespace & \b removes 'person'
+		String regexPerson = "\\s*\\bperson\\b\\s*";
+		
+		NUM_OF_PEOPLE = NUM_OF_PEOPLE.replaceAll(regexPeople, "").replaceAll(regexPerson, "");
 		return NUM_OF_PEOPLE;
 	}
 	

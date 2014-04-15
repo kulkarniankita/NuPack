@@ -1,6 +1,7 @@
 package code;
 
 import java.math.BigDecimal;
+import java.util.Set;
 /**
  * MarkupView is responsible for displaying the final output to the user
  * It formats the input & output to provide a clean UI to the user
@@ -26,6 +27,21 @@ public class MarkupView {
 		//Prepends '$' sign to base price for representing money
 		String dollarBasePrice = "$"+finalBasePrice.toString();
 		return dollarBasePrice;
+	}
+	/**
+	 * 
+	 * @param basePrice gets base price that was entered by user
+	 * @param numOfPeople gets number of people that was entered by user
+	 * @param typeOfMaterial gets the type of material
+	 * This method prints all the parameters values on the console along with the 
+	 * final base price
+	 * 
+	 */
+	public static void printInput(BigDecimal basePrice,BigDecimal numOfPeople, Set<String> typeOfMaterial)
+	{
+		System.out.println("Base Price: $"+basePrice);
+		System.out.println("Number of People: "+numOfPeople);
+		System.out.println("Type of Material: "+typeOfMaterial.toString().replaceAll("\\[", "").replaceAll("\\]", "") +" ");
 	}
 
 }

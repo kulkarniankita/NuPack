@@ -77,7 +77,7 @@ public class MarkupModelTest {
 	{
 		// Test input
 		examplebasePrice = "$5432.00";
-		exampleNumOfPeople = "1";
+		exampleNumOfPeople = "1 person";
 		exampleTypeOfMaterial = new String[]{"drugs","DRUGS"};
 		
 		String expectedBasePrice = "$6199.81";
