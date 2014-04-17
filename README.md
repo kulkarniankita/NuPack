@@ -94,6 +94,10 @@ References:
  - Why to use BigDecimal, Retrieved from <a>http://www.javapractices.com/topic/TopicAction.do?Id=13</a>
  - ROUND_UP & setScale of 2, Retrieved from <a>http://www.javaranch.com/journal/2003/07/MoneyInJava.html</a>
  - Unit Testing with JUnit - Tutorial, Retrieved from <a>http://www.vogella.com/tutorials/JUnit/article.html</a>
+ 
+License:
+--------
+ - MIT License is used in this app as it denotes people can do anything with this code as long as they don't provide any attribution back to you & don't hold you liable
 
  
  

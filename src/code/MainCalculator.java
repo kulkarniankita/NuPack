@@ -81,18 +81,7 @@ public class MainCalculator {
 			TYPE_OF_MATERIAL = markupControllerObject.getTypeOfMaterial();
 		}
 		
-		/*
-		 * Removes $ sign & whitespace from Base Price if present
-		 * and returns only the double value
-		 */
-		BASE_PRICE = validateDollarCheck(BASE_PRICE);
-		
-		/*
-		 * Removes keyword 'people' & whitespace from Number of 
-		 * people if present & returns only number
-		 */
-		NUM_OF_PEOPLE = validateNumOfPeopleKeyword(NUM_OF_PEOPLE);
-		
+	
 		//checks if the values in constructor are valid otherwise exits system
 		if(!validateNullArgument(BASE_PRICE,NUM_OF_PEOPLE,TYPE_OF_MATERIAL) || !MainCalculator.validateEmptyArgument(BASE_PRICE,NUM_OF_PEOPLE) || !MainCalculator.validateNumberFormat(BASE_PRICE, NUM_OF_PEOPLE))
 		{
@@ -101,6 +90,18 @@ public class MainCalculator {
 		}
 		else
 		{
+			/*
+			 * Removes $ sign & whitespace from Base Price if present
+			 * and returns only the double value
+			 */
+			BASE_PRICE = validateDollarCheck(BASE_PRICE);
+			
+			/*
+			 * Removes keyword 'people' & whitespace from Number of 
+			 * people if present & returns only number
+			 */
+			NUM_OF_PEOPLE = validateNumOfPeopleKeyword(NUM_OF_PEOPLE);
+		
 			MarkupModel.calculateMarkupSystemFormula(BASE_PRICE, NUM_OF_PEOPLE, TYPE_OF_MATERIAL);
 		}
 	}

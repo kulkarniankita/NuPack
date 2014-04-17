@@ -106,7 +106,11 @@ public class MarkupModel {
 		Set<String> typeOfMaterialSet = null;
 		for(String element:TYPE_OF_MATERIAL)
 		{
-			typeOfMaterialSet = new HashSet<String>(Arrays.asList(element));
+			//Only adds elements which are not empty or not null to the Set
+			if(!element.isEmpty() && element !=null)
+			{
+				typeOfMaterialSet = new HashSet<String>(Arrays.asList(element));
+			}
 		}
 		//When Type of Material does not match hashmap keys then '0' is added
 		BigDecimal totalTypeOfMaterialMarkup = new BigDecimal("0");
