@@ -163,6 +163,18 @@ public class MainCalculator {
 	public static boolean validateNumberFormat(String BASE_PRICE, String NUM_OF_PEOPLE) 
 	{
 		/*
+		 * Removes $ sign & whitespace from Base Price if present
+		 * and returns only the double value
+		 */
+		BASE_PRICE = validateDollarCheck(BASE_PRICE);
+
+		/*
+		 * Removes keyword 'people' & whitespace from Number of 
+		 * people if present & returns only number
+		 */
+		NUM_OF_PEOPLE = validateNumOfPeopleKeyword(NUM_OF_PEOPLE);
+
+		/*
 		 * If base price is a proper double value & number of people is a proper integer 
 		 * else throw exception
 		 */
